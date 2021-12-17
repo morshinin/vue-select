@@ -1,7 +1,7 @@
 <template>
 	<div :class="$style.select">
 		<div :class="$style.selected" @click="open = !open">
-			{{ selected }}
+			{{ selected || placeholder }}
 		</div>
 		<div :class="{ [$style.items]: true, [$style.itemsHide]: !open }">
 			<div 
@@ -16,19 +16,19 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
 	name: 'SelectComponent',
+	props: {
+		items: [],
+	},
 	data() {
 		return {
 			open: false,
-			items: ['Item 1', 'Item 2', 'Item 3'],
-			selected: null,
+			placeholder: 'Choose a song',
+			selected: this.placeholder,
 		}
 	},
-	mounted() {
-		this.selected = this.items.length > 0 ? this.items[0] : null
-	}
 }
 </script>
 

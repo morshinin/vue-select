@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <select-component />
+    <select-component :items="items" />
+    <select-component :items="items" />
   </div>
 </template>
 
@@ -9,6 +10,11 @@ import { SelectComponent } from './components';
 
 export default {
   name: 'App',
+  data() {
+    return {
+      items: ['Come as you are', 'Lithium', 'Sappy', 'Dumb', 'On a plane']
+    }
+  },
   components: {
     SelectComponent
   }
