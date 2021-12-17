@@ -32,50 +32,43 @@ export default {
 }
 </script>
 
-<style module>
-.select {
-	cursor: pointer;
-	text-transform: uppercase;
-	position: relative;
-}
+<style lang="stylus" module>
+.select
+	cursor: pointer
+	text-transform: uppercase
+	position: relative
 
 .selected,
-.item {
-	padding: 1rem;
-	transition: background-color .5s ease;
-}
+.item 
+	padding: 1rem
+	transition: background-color .5s ease
 
-.selected {
-	font-weight: bold;
-	border: 1px solid silver;
-	border-radius: 5px;
-	border-bottom-right-radius: 0;
-	border-bottom-left-radius: 0;
-}
+.selected 
+	font-weight: bold
+	border: 1px solid silver
+	border-radius: 5px
+	border-bottom-right-radius: 0
+	border-bottom-left-radius: 0
 
-.items {
-	position: absolute;
-	width: 100%;
-	left: 0;
-	background-color: #000;
-	color: #fff;
-	border: 1px solid silver;
-	border-top: 0;
-	border-bottom-right-radius: 5px;
-	border-bottom-left-radius: 5px;
-	box-sizing: border-box;
-}
+.items 
+	position: absolute
+	width: 100%
+	left: 0
+	background-color: #000
+	color: #fff
+	border: 1px solid silver
+	border-top: 0
+	border-bottom-right-radius: 5px
+	border-bottom-left-radius: 5px
+	box-sizing: border-box
 
-.item:not(:first-child) {
-	border-top: 1px solid silver;
-}
+.item:not(:first-child)
+	border-top: 1px solid silver
 
 .selected:hover,
-.item:hover {
-	background-color: silver;
-}
+.item:hover 
+	background-color: silver
 
-.itemsHide {
-	display: none;
-}
+.itemsHide 
+	display: none
 </style>
