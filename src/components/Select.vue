@@ -1,26 +1,36 @@
 <template>
-	<div :class="$style.select">
-		<div :class="$style.selected" @click="open = !open">
+	<div :class="$style.select" @blur="open = true" :tabindex="tabindex">
+		<div 
+			:class="{
+				[$style.selected]: true,
+				[$style.selectedOpen]: !open }"
+			@click="open = !open">
 			{{ selected || placeholder }}
 		</div>
-		<div :class="{ [$style.items]: true, [$style.itemsHide]: !open }">
-			<div 
-				v-for="(item, i) of items" 
-				:key="i"
-				@click="selected=item; open=false"
-				:class="$style.item"
-			>
-				{{ item }}
-			</div>
-		</div>
+		<items-list-component
+			:items="items"
+			:isOpen="open"
+			@changeOpen="setOpen"
+			@changeSelect="setSelect"
+		/>
 	</div>
 </template>
 
-<script lang="ts">
+<script>
+import ItemsListComponent from './ItemsList.vue';
+
 export default {
 	name: 'SelectComponent',
 	props: {
-		items: [],
+		items: {
+			type: Array,
+			required: true
+		},
+		tabindex: {
+			type: Number,
+			required: false,
+			default: 0
+		}
 	},
 	data() {
 		return {
@@ -29,6 +39,17 @@ export default {
 			selected: this.placeholder,
 		}
 	},
+	components: {
+		ItemsListComponent
+	},
+	methods: {
+		setOpen(value) {
+			this.open = value;
+		},
+		setSelect(value) {
+			this.selected = value;
+		}
+	}
 }
 </script>
 
@@ -38,37 +59,24 @@ export default {
 	text-transform: uppercase
 	position: relative
 
-.selected,
-.item 
+.selected 
 	padding: 1rem
 	transition: background-color .5s ease
-
-.selected 
 	font-weight: bold
 	border: 1px solid silver
 	border-radius: 5px
-	border-bottom-right-radius: 0
-	border-bottom-left-radius: 0
 
-.items 
-	position: absolute
-	width: 100%
-	left: 0
-	background-color: #000
-	color: #fff
-	border: 1px solid silver
-	border-top: 0
-	border-bottom-right-radius: 5px
-	border-bottom-left-radius: 5px
-	box-sizing: border-box
+	&:after
+		content '\25bc'
+		position absolute
+		right 0
+		padding 0 1rem
+		transform rotateX(180deg)
+		transition transform .5s ease
 
-.item:not(:first-child)
-	border-top: 1px solid silver
+	&Open:after
+		transform rotateX(0)
 
-.selected:hover,
-.item:hover 
-	background-color: silver
-
-.itemsHide 
-	display: none
+	&:hover
+		background-color: silver
 </style>
