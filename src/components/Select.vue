@@ -1,5 +1,9 @@
 <template>
-	<div :class="$style.select" @blur="open = true" :tabindex="tabindex">
+	<div 
+		:class="$style.select"
+		@blur="open = false"
+		:tabindex="tabindex"
+	>
 		<div 
 			:class="{
 				[$style.selected]: true,
@@ -65,17 +69,18 @@ export default {
 	font-weight: bold
 	border: 1px solid silver
 	border-radius: 5px
+	text-align left
 
 	&:after
-		content '\25bc'
+		content '\25b4'
 		position absolute
+		top 50%
 		right 0
 		padding 0 1rem
-		transform rotateX(180deg)
-		transition transform .5s ease
+		transform rotateX(180deg) translateY(50%)
 
 	&Open:after
-		transform rotateX(0)
+		transform rotateX(0) translateY(-50%)
 
 	&:hover
 		background-color: silver

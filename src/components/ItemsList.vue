@@ -3,7 +3,7 @@
 		:class="{ 
 			[$style.list]: true, 
 		}"
-		v-if="!isOpen"
+		v-if="isOpen"
 	>
 		<div 
 			:class="$style.listItem"
@@ -26,7 +26,6 @@ export default {
 		},
 		isOpen: {
 			type: Boolean,
-			default: false
 		}
 	},
 	methods: {
@@ -45,6 +44,7 @@ export default {
 	position: absolute
 	width: 100%
 	left: 0
+	text-align left
 	background-color: #fff
 	border: 1px solid silver
 	box-sizing: border-box

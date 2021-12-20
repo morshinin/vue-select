@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <select-component :items="items" />
-    <select-component :items="items" />
   </div>
 </template>
 
